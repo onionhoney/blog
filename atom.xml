@@ -3,11 +3,11 @@
   <title>Stochastic Thoughts</title>
   
   <subtitle>A programming blog</subtitle>
-  <link href="/blog/atom.xml" rel="self"/>
+  <link href="/atom.xml" rel="self"/>
   
-  <link href="http://onionhoney.github.io/blog/"/>
+  <link href="http://onionhoney.github.io/"/>
   <updated>2017-10-12T19:55:54.000Z</updated>
-  <id>http://onionhoney.github.io/blog/</id>
+  <id>http://onionhoney.github.io/</id>
   
   <author>
     <name>Jeffrey (Zhouheng) Sun</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://onionhoney.github.io/blog/2017/10/12/hello-world/"/>
-    <id>http://onionhoney.github.io/blog/2017/10/12/hello-world/</id>
+    <link href="http://onionhoney.github.io/2017/10/12/hello-world/"/>
+    <id>http://onionhoney.github.io/2017/10/12/hello-world/</id>
     <published>2017-10-12T19:55:54.000Z</published>
     <updated>2017-10-12T19:55:54.000Z</updated>
     
