@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://onionhoney.github.io/CV/index.html</loc>
+    
+    <lastmod>2017-10-17T20:01:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://onionhoney.github.io/2017/10/2D-segment-Tree/</loc>
     
-    <lastmod>2017-10-17T06:44:21.000Z</lastmod>
+    <lastmod>2017-10-17T20:00:30.000Z</lastmod>
     
   </url>
   
