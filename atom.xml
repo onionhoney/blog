@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://onionhoney.github.io/"/>
-  <updated>2017-10-13T03:23:52.000Z</updated>
+  <updated>2017-10-17T06:44:21.000Z</updated>
   <id>http://onionhoney.github.io/</id>
   
   <author>
@@ -17,19 +17,20 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://onionhoney.github.io/2017/10/hello-world/"/>
-    <id>http://onionhoney.github.io/2017/10/hello-world/</id>
-    <published>2017-10-13T03:23:52.000Z</published>
-    <updated>2017-10-13T03:23:52.000Z</updated>
+    <title>Case Study of Fun Greedy Problems</title>
+    <link href="http://onionhoney.github.io/2017/10/2D-segment-Tree/"/>
+    <id>http://onionhoney.github.io/2017/10/2D-segment-Tree/</id>
+    <published>2017-10-17T05:58:43.000Z</published>
+    <updated>2017-10-17T06:44:21.000Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<p>The importance of greedy problems can never be overstated.They not only produce most of the awesome &quot;aha&quot; moments in competitive coding, but also trains good intuition as well as proof skills. Over the summer I have encountered a few of these awesome greedy problems, which I shall summarize below:</p><h3>1. Maximum minimum adjacent gap</h3><blockquote><p>Given a finite integer sequence , find a permutation that would maximize the minimum adjacent gap. For instance, the min gap of [1, 5, 2] is 3, because min(|1 - 5|, |5 - 2|) = 3.</p></blockquote><p>The gist of a greedy proof is that &quot;It might look sketchy, but I can show you that none better exists.&quot; A common way to develop an idea is to brainstorm any &quot;suboptimal&quot; greedy solution that comes to mind, and refute them with counterexamples, until you found something which you cannot easily refute with example.</p><p>For this problem, I first considered binary search (which is somewhat related to greedy because both methods reduce the search space with very crude assumptions (greedy is to &quot;choose the best xxx&quot;, binary search is to &quot;know that if l and r satisfy A, then all of [l..r] satisfy A&quot;. ))</p><p>Back to the binary search strategy. So what if we binary-search on the min gap, and use that to greedily pick elements one by one from the sequence? The issue is, we can't really decide whether to go up or down for the next element. Okay, so let's fix it by sorting it first.Now, where do we start? My intuition was the smallest/largest elements are too wasteful to be placed in the head or tail, because then they can only &quot;benefit&quot; one neighbor with their potential for large gaps. Therefore i zeroed in on the median, for it produces the smallest average gap with a random other element, and that we should alternate between the smaller half and the larger half, because well, one half could be really crowded to pick consecutives from. For instance, something like 1 10 20 30 100 101 102 103 would be disastrous.</p><p>Time to test our strategy. Will it always work?</p><p>(To be continued)</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+        &lt;p&gt;The importance of greedy problems can never be overstated.
+They not only produce most of the awesome &amp;quot;aha&amp;quot; moments in competiti
       
     
     </summary>
