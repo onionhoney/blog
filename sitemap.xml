@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://onionhoney.github.io/2017/10/12/hello-world/</loc>
+    <loc>http://onionhoney.github.io/blog/about/index.html</loc>
     
-    <lastmod>2017-10-12T19:55:54.000Z</lastmod>
+    <lastmod>2017-10-13T04:08:58.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://onionhoney.github.io/blog/2017/10/hello-world/</loc>
+    
+    <lastmod>2017-10-13T03:23:52.000Z</lastmod>
     
   </url>
   
