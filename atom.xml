@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Stochastic Thoughts</title>
+  
+  <subtitle>A programming blog</subtitle>
+  <link href="/b/atom.xml" rel="self"/>
+  
+  <link href="http://onionhoney.github.io/b/"/>
+  <updated>2017-10-17T20:00:30.000Z</updated>
+  <id>http://onionhoney.github.io/b/</id>
+  
+  <author>
+    <name>Jeffrey Zhouheng Sun</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Case Study of Greedy Problems I: Max Min Adjacent Gap</title>
+    <link href="http://onionhoney.github.io/b/2017/10/2D-segment-Tree/"/>
+    <id>http://onionhoney.github.io/b/2017/10/2D-segment-Tree/</id>
+    <published>2017-10-17T05:58:43.000Z</published>
+    <updated>2017-10-17T20:00:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>The importance of greedy problems can never be overstated.They not only produce most of the awesome &quot;aha&quot; moments in competitive coding, but also trains good intuition as well as proof skills. Over the summer I have encountered a few of these awesome greedy problems, which I shall summarize below:</p><h2>1. Maximum minimum adjacent gap</h2><blockquote><p>Given a finite even-length integer sequence , find a permutation that would maximize the minimum adjacent gap k. For instance, the min gap of [1, 5, 2, 8] is 3, because min(|1 - 5|, |5 - 2|, |2 - 8|) = 3.</p></blockquote><p>The gist of a greedy proof is that &quot;It might look sketchy, but I can show you that none better exists.&quot; A common way to develop an idea is to brainstorm any &quot;suboptimal&quot; greedy solution that comes to mind, and refute them with counterexamples, until you found something which you cannot easily refute with example.</p><h4>I. Initial Guess: Binary Search</h4><p>For this problem, I first considered binary search (which is somewhat related to greedy because both methods reduce the search space with very crude assumptions (greedy is to &quot;choose the best xxx&quot;, binary search is to &quot;know that if l and r satisfy A, then all of [l..r] satisfy A&quot;. ))</p><p>Back to the binary search strategy. So what if we binary-search on the min gap, and use that to greedily pick elements one by one from the sequence? The issue is, we can't really decide whether to go up or down for the next element. Okay, so let's fix it by sorting it first.Now, where do we start? My intuition was the smallest/largest elements are too wasteful to be placed in the head or tail, because then they can only &quot;benefit&quot; one neighbor with their potential for large gaps. Therefore i zeroed in on the median, for it produces the smallest average gap with a random other element, and that we should alternate between the smaller half and the larger half, because well, one half could be really crowded to pick consecutives from. For instance, something like 1 10 20 30 100 101 102 103 would be disastrous.</p><p>Time to test our strategy.</p><p><code>1 5 8 9</code> Suppose min gap k = 3. We start with 5 going up at the 'nearest' satisfied value, which is 8, and then alternately go down at the nearest, which is 1, then 9. So 3 works. Now let's try 4. It's now 5-&gt;9-&gt;1-&gt;8, and obviously &gt;4 won't work because 5's max gap is 4, and we have to at least choose one gap for it.</p><p>So far it is promising. But we still haven't got a clue how to proof it.</p><h4>II. Greedy Revision</h4><p>To proceed, I observed that during our alternate picking process, we are mostly choosing consecutive elements on both sides.For the sequence <code>1 2 3 4 5 6 7 8</code>, we start from 4 going up with a guess of k = 3, then we will surely pick <code>4, 7, 3, 6, 2, 5, 1, 8</code>. The left-half subequence is  <code>4, 3, 2, 1</code>, while the right-half is <code>7, 6, 5, 8</code>.The greedy intuition is that if we pick 4, 7, then 3 followed by 6, then for a valid gap guess we must pick 2 afterwards, for if we skip 2 and pick 1 instead, that would mean that 2 doesn't work with smaller right half elemenets either, and consequently 2 very likely couldn't be used at all, and we will probably fail. (because then 2 has to be paired with an element larger than 6 on the right, but we are generally going from large to small on the right half)</p><p>With that in mind, we can further simplify the binary search by the hypothesis that it's only good to pick in the manner of 4 8 3 7 2 6 1 5, because pairwise comparison with our previous k = 3 instance will reveal that.<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">4 8 3 7 2 6 1 5   // new strategy</div><div class="line">4 7 3 6 2 5 1 8   // old strategy</div></pre></td></tr></table></figure></p><p>It's as if we fix our left-half choices, but we're always choosing an element that's one larger on the right half. The only exception is 1 - 5 as compared to 1 - 8, but perhaps we could show it's better anyways...?</p><h4>III. The Proof</h4><p>Notice that in our new strategy, only the left-right gaps matter, because the right-left gaps are always one element widerthan the left-right gap adjacent to its left.Therefore we can express our greedy solution as $$ ans = min_{i=0..n-1}(a[n+i] - a[i]) $$, where n is the half length of sequence. That is, it's taking exactly all the gaps of width n, and we claim this is the max.</p><p>Again, a common way to prove greediness is proof by contradiction. (&quot;Show me your way, and I'll show you it's impossible.&quot;)</p><p>First, let's pinpoint the min gap in our proposed solution as the difference of a[n + p] and a[p], for some \( p \in [0..n-1] \) (there could be multiple min pairs, but we can pick any).Suppose we can do better than this, then it's obvious that we have to pair up a[p] with an element that's either larger than a[n+p] or smaller than a[p], for otherwise the new min gap couldn't be better under the contraints of the a[p] gaps.</p><p>Further, we have to make sure that no two elements within a[p] .. a[n+p] pair up with each other. For otherwise, we pick i, j \(\in\) [p..n+p], and \( newans \leq abs(a[i] - a[j]) \leq abs(a[n+p] - a[p]) = oldans \), and we couldn't be better off.</p><p>However, notice that there are n + 1 elements within the range of a[p] .. a[n + p], but there are only n - 1 outsiders to pair them with. Even if we alternately place the outsiders in between, we still need n elements to accomplish that. Therefore, pigeonhole principle dictates that we cannot separate all the elements within a[p] .. a[n + p], and we reached a contradiction.</p><p>We have therefore proven by contradiction that none better scheme exists. Surprising right? But that's what greedy problems are about : boldly assume, carefully observe, and faithfully try to prove it!</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;The importance of greedy problems can never be overstated.
+They not only produce most of the awesome &amp;quot;aha&amp;quot; moments in competiti
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
